@@ -10,6 +10,7 @@ function App() {
   const [nameList, setNameList] = useState(getNames());
   const [textAreaVal, setTextAreaVal] = useState('');
   const [selectedName, setSelectedName] = useState('');
+  const [activeConfetti, setActiveConfetti] = useState(false);
 
   useEffect(() => {
     localStorage.setItem('names', JSON.stringify(nameList));
@@ -29,17 +30,16 @@ function App() {
   };
 
   const handleRandomName = () => {
-    // const randomIndex = Math.floor(Math.random() * nameList.length);
-    // setSelectedName(nameList[randomIndex]);
+    setActiveConfetti(false);
     const interval = setInterval(
       () =>
         setSelectedName(nameList[Math.floor(Math.random() * nameList.length)]),
-      60
+      50
     );
-    // return () => clearInterval(interval);
 
     const timer = setTimeout(() => {
       clearInterval(interval);
+      setActiveConfetti(true);
     }, 3500);
 
     return () => clearTimeout(timer);
@@ -47,9 +47,9 @@ function App() {
 
   return (
     <div className="flex flex-col justify-between h-screen">
-      <Header selectedName={selectedName} />
-      <div className="flex flex-col md:flex md:flex-row-reverse justify-evenly -mt-20 sm:mt-0">
-        <div className="flex flex-col items-center mb-10">
+      <Header selectedName={selectedName} activeConfetti={activeConfetti} />
+      <div className="flex-col justify-between md:flex md:flex-row-reverse md:justify-evenly -mt-20 sm:mt-0">
+        <div className="flex flex-col items-center mb-20 md:mb-0">
           <h1 className="text-4xl font-bold text-left  my-2 sm:my-6">
             Random Name Draw
           </h1>
@@ -80,9 +80,9 @@ function App() {
             </div>
           </form>
         </div>
-        <div className="flex flex-col items-center justify-evenly mb-10 md:max-w-md text-center">
+        <div className="flex flex-col items-center justify-evenly text-center md:w-96">
           {selectedName ? (
-            <p className="text-5xl tracking-wider font-bold break-words animate-jump-in animate-duration-1000">
+            <p className="text-4xl md:text-5xl tracking-wider font-bold break-words animate-jump-in animate-duration-1000 h-24 text-wrap">
               {selectedName.toUpperCase()}
             </p>
           ) : (

@@ -2,7 +2,7 @@ import Confetti from 'react-confetti';
 import { useState, useEffect } from 'react';
 import React from 'react';
 
-const Header = ({ selectedName }) => {
+const Header = ({ selectedName, activeConfetti }) => {
   const [screenSize, setScreenSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -25,16 +25,16 @@ const Header = ({ selectedName }) => {
 
   return (
     <div className="flex justify-between py-2 sm:py-3 text-3xl font-medium text-white bg-[#12412a]">
-      {selectedName && (
+      {activeConfetti && (
         <Confetti
           width={screenSize.width}
           height={screenSize.height}
           run={true}
-          gravity={0.075}
-          tweenDuration={1500}
+          gravity={0.045}
+          tweenDuration={9000}
           opacity={0.8}
-          recycle={true}
-          numberOfPieces={300}
+          recycle={false}
+          numberOfPieces={800}
         />
       )}
       <h1 className="ml-6 bg-[#008a00] px-2 py-1 tracking-[-0.095em]">TD</h1>
