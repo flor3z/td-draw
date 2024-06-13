@@ -26,23 +26,30 @@ function App() {
 
   const clearLocalNames = () => {
     setTextAreaVal('');
+    setSelectedName('');
     return localStorage.removeItem('names');
   };
 
   const handleRandomName = () => {
-    setActiveConfetti(false);
-    const interval = setInterval(
-      () =>
-        setSelectedName(nameList[Math.floor(Math.random() * nameList.length)]),
-      50
-    );
+    if (textAreaVal != '') {
+      setActiveConfetti(false);
+      const interval = setInterval(
+        () =>
+          setSelectedName(
+            nameList[Math.floor(Math.random() * nameList.length)]
+          ),
+        50
+      );
 
-    const timer = setTimeout(() => {
-      clearInterval(interval);
-      setActiveConfetti(true);
-    }, 3500);
+      const timer = setTimeout(() => {
+        clearInterval(interval);
+        setActiveConfetti(true);
+      }, 3500);
 
-    return () => clearTimeout(timer);
+      return () => clearTimeout(timer);
+    } else {
+      return null;
+    }
   };
 
   return (
