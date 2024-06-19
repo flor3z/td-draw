@@ -52,15 +52,20 @@ function App() {
     }
   };
 
+  const activeSaveName =
+    textAreaVal != ''
+      ? 'px-2 py-1 rounded-md bg-[#008a00] hover:bg-[#007c16] text-white text-xl hover:scale-105 shadow-md  mt-4 active:scale-95 transition transform duration-200 ease-in-out'
+      : 'px-2 py-1 rounded-md border-[2px] border-[#008a00] hover:border-[#007c16] text-[#007c16] text-xl hover:scale-105 shadow-md  mt-4 active:scale-95 transition transform duration-200 ease-in-out';
+
   return (
     <div className="flex flex-col justify-between h-screen">
       <Header selectedName={selectedName} activeConfetti={activeConfetti} />
       <div className="flex-col justify-between md:flex md:flex-row-reverse md:justify-evenly -mt-20 sm:mt-0">
-        <div className="flex flex-col items-center mb-20 md:mb-0">
-          <h1 className="text-4xl font-bold text-left  my-2 sm:my-6">
+        <div className="flex flex-col items-center pb-10 md:pb-0">
+          <h1 className="text-2xl md:text-4xl font-bold text-left  my-2 sm:my-6 tracking-wider">
             Random Name Draw
           </h1>
-          <h3 className="text-xl mb-4">Enter names seperated by commas:</h3>
+          <h3 className="text-lg mb-4">Enter names seperated by commas:</h3>
           <form onSubmit={handleSaveNames} className="flex flex-col">
             <textarea
               spellCheck={'false'}
@@ -73,8 +78,9 @@ function App() {
             ></textarea>
             <div className="flex justify-evenly">
               <button
+                disabled={!textAreaVal}
                 type="submit"
-                className="px-2 py-1 rounded-md bg-[#008a00] hover:bg-[#007c16] text-white text-xl hover:scale-105 shadow-md  mt-4 active:scale-95 transition transform duration-200 ease-in-out"
+                className={activeSaveName}
               >
                 Save Names
               </button>

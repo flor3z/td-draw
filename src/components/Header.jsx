@@ -24,7 +24,7 @@ const Header = ({ selectedName, activeConfetti }) => {
   }, [screenSize]);
 
   return (
-    <div className="flex justify-between py-2 sm:py-3 text-3xl font-medium text-white bg-[#12412a]">
+    <div className="flex justify-between py-2 sm:py-3 text-lg md:text-2xl font-thin text-white bg-[#12412a] items-center">
       {activeConfetti && (
         <Confetti
           width={screenSize.width}
@@ -37,7 +37,13 @@ const Header = ({ selectedName, activeConfetti }) => {
           numberOfPieces={800}
         />
       )}
-      <h1 className="ml-6 bg-[#008a00] px-2 py-1 tracking-[-0.095em]">TD</h1>
+      <div className="flex justify-between items-center">
+        <h1 className="ml-6 bg-[#008a00] px-2 py-1 tracking-[-0.095em] font-medium">
+          TD
+        </h1>
+        <h1 className="pl-2">Canada Trust</h1>
+      </div>
+
       <h1 className="mr-6">Gala 2024</h1>
     </div>
   );
