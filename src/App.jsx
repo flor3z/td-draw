@@ -61,8 +61,8 @@ function App() {
     <div className="flex flex-col justify-between h-screen">
       <Header selectedName={selectedName} activeConfetti={activeConfetti} />
       <div className="flex-col justify-between md:flex md:flex-row-reverse md:justify-evenly -mt-20 sm:mt-0">
-        <div className="flex flex-col items-center pb-10 md:pb-0">
-          <h1 className="text-2xl md:text-4xl font-bold text-left  my-2 sm:my-6 tracking-wider">
+        <div className="flex flex-col items-center pb-6 md:pb-0">
+          <h1 className="text-2xl md:text-4xl font-bold text-left py-2 sm:py-6 tracking-wider">
             Random Name Draw
           </h1>
           <h3 className="text-lg mb-4">Enter names seperated by commas:</h3>
@@ -74,7 +74,7 @@ function App() {
               type="text"
               placeholder="Enter names..."
               rows={10}
-              className="bg-neutral-100 w-80 outline-double outline-green-800 outline-2 rounded-sm shadow-md"
+              className="bg-neutral-100 w-64 h-52 sm:h-full  sm:w-80  outline-double outline-green-800 outline-2 rounded-md"
             ></textarea>
             <div className="flex justify-evenly">
               <button
@@ -93,9 +93,9 @@ function App() {
             </div>
           </form>
         </div>
-        <div className="flex flex-col items-center justify-evenly text-center md:w-96">
+        <div className="flex flex-col items-center justify-evenly text-center md:w-96 -mb-16 sm:-mb-0">
           {selectedName ? (
-            <p className="text-4xl md:text-5xl tracking-wider font-bold break-words animate-jump-in animate-duration-1000 h-24 text-wrap">
+            <p className="text-4xl md:text-5xl tracking-wider font-bold break-words h-20 pt-4 sm:h-24 text-wrap">
               {selectedName.toUpperCase()}
             </p>
           ) : (
