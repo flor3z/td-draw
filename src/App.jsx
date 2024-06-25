@@ -19,7 +19,13 @@ function App() {
   const handleSaveNames = (e) => {
     e.preventDefault();
     if (textAreaVal !== '' || textAreaVal !== ' ') {
-      const splitArray = textAreaVal.split(',').map((name) => name.trim());
+      let splitArray = textAreaVal.split(',').map((name) => name.trim());
+      if (splitArray[splitArray.length - 1] === '') {
+        splitArray.pop();
+      } else {
+        splitArray;
+      }
+      console.log(splitArray);
       setNameList(splitArray);
     }
   };
