@@ -25,7 +25,6 @@ function App() {
       } else {
         splitArray;
       }
-      console.log(splitArray);
       setNameList(splitArray);
     }
   };
