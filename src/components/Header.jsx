@@ -2,7 +2,7 @@ import Confetti from 'react-confetti';
 import { useState, useEffect } from 'react';
 import React from 'react';
 
-const Header = ({ selectedName, activeConfetti }) => {
+const Header = ({ activeConfetti }) => {
   const [screenSize, setScreenSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,

@@ -13,11 +13,15 @@ function App() {
   const [activeConfetti, setActiveConfetti] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem('names', JSON.stringify(nameList));
-  }, [nameList]);
+    const timeOut = setTimeout(() => {
+      handleSaveNames();
+      localStorage.setItem('names', JSON.stringify(nameList));
+    }, 1000);
 
-  const handleSaveNames = (e) => {
-    e.preventDefault();
+    return () => clearTimeout(timeOut);
+  }, [textAreaVal, nameList]);
+
+  const handleSaveNames = () => {
     if (textAreaVal !== '' || textAreaVal !== ' ') {
       let splitArray = textAreaVal.split(',').map((name) => name.trim());
       if (splitArray[splitArray.length - 1] === '') {
@@ -29,7 +33,8 @@ function App() {
     }
   };
 
-  const clearLocalNames = () => {
+  const clearLocalNames = (e) => {
+    e.preventDefault();
     setTextAreaVal('');
     setSelectedName('');
     return localStorage.removeItem('names');
@@ -71,7 +76,7 @@ function App() {
             Random Name Draw
           </h1>
           <h3 className="text-lg mb-4">Enter names seperated by commas:</h3>
-          <form onSubmit={handleSaveNames} className="flex flex-col">
+          <form className="flex flex-col">
             <textarea
               spellCheck={'false'}
               onChange={(e) => setTextAreaVal(e.target.value)}
@@ -82,13 +87,6 @@ function App() {
               className="bg-neutral-100 w-64 h-52 sm:h-full  sm:w-80  outline-double outline-green-800 outline-2 rounded-md"
             ></textarea>
             <div className="flex justify-evenly">
-              <button
-                disabled={!textAreaVal}
-                type="submit"
-                className={activeSaveName}
-              >
-                Save Names
-              </button>
               <button
                 onClick={clearLocalNames}
                 className="px-2 py-1 rounded-md border-[2px] border-[#008a00] hover:border-[#007c16] text-[#007c16] text-xl hover:scale-105 shadow-md  mt-4 active:scale-95 transition transform duration-200 ease-in-out"
@@ -108,7 +106,7 @@ function App() {
           )}
           <button
             onClick={handleRandomName}
-            className="px-2 py-1 rounded-md bg-[#008a00] hover:bg-[#007c16] shadow-md text-white text-xl hover:scale-105 mt-4 active:scale-95 transition transform duration-200 ease-in-out"
+            className={nameList && activeSaveName}
           >
             Random Name Selection
           </button>
